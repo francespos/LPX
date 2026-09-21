@@ -11,15 +11,15 @@ public:
 
     Rotation& operator*=(Rotation other);
 
-    float Angle() const;
+    float Radiants() const;
     Rotation Inverse() const;
 
-    Rotation& SetAngle(float angle);
+    Rotation& SetRadiants(float radiants);
     Rotation& Invert();
 
 private:
-    Rotation(float cos_angle, float sin_angle) : m_cos_angle(cos_angle), m_sin_angle(sin_angle) {}
-    float m_cos_angle, m_sin_angle;
+    Rotation(float gx, float gy) : m_gx(gx), m_gy(gx) {}
+    float m_gx, m_gy; // goniometric x and y
 };
 
 bool operator==(Rotation lhs, Rotation rhs);
