@@ -13,17 +13,17 @@ TEST(Vector2Test, Constructor) {
     EXPECT_EQ(vector.y, y);
 }
 
-TEST(Vector2Test, Equal) {
+TEST(Vector2Test, EqualTrue) {
     float x = 1.3221f;
     float y = -432.02f;  
 
     Vector2 lhs(x, y);  
-    Vector2 rhs(x, y);
+    auto rhs = lhs;
 
-    EXPECT_EQ(lhs, rhs);
+    EXPECT_TRUE(lhs == rhs);
 }
 
-TEST(Vector2Test, NotEqual) {
+TEST(Vector2Test, EqualFalse) {
     float x1 = 532.49583f;
     float y1 = -2e-4;
 
@@ -33,7 +33,30 @@ TEST(Vector2Test, NotEqual) {
     Vector2 lhs(x1, y1);
     Vector2 rhs(x2, y2);
 
-    EXPECT_NE(lhs, rhs);
+    EXPECT_FALSE(lhs == rhs);
+}
+
+TEST(Vector2Test, NotEqualTrue) {
+    float x1 = 532.49583f;
+    float y1 = -2e-4;
+
+    float x2 = 483.04f;
+    float y2 = 5002.85f;
+
+    Vector2 lhs(x1, y1);
+    Vector2 rhs(x2, y2);
+
+    EXPECT_TRUE(lhs != rhs);
+}
+
+TEST(Vector2Test, NotEqualFalse) {
+    float x = 1.3221f;
+    float y = -432.02f;  
+
+    Vector2 lhs(x, y);  
+    auto rhs = lhs;
+
+    EXPECT_FALSE(lhs != rhs);
 }
 
 TEST(Vector2Test, AddOperator) {
