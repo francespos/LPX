@@ -21,7 +21,9 @@ Matrix2& Matrix2::operator*=(float scalar) {
 }
 
 Matrix2& Matrix2::operator/=(float scalar) {
-    return *this *= (1.0f / scalar);
+    col1 /= scalar;
+    col2 /= scalar;
+    return *this;
 }
 
 Matrix2& Matrix2::operator*=(Matrix2 other) {
