@@ -1,3 +1,4 @@
+enable_testing()
 find_package(GTest REQUIRED)
 
 add_executable(Test Test.cpp)
