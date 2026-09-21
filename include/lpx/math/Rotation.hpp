@@ -4,7 +4,7 @@ namespace lpx {
 
 class Rotation {
 public:
-    explicit Rotation(float angle);
+    explicit Rotation(float radiants);
 
     friend bool operator==(Rotation lhs, Rotation rhs);
     friend Rotation operator*(Rotation lhs, Rotation rhs);
