@@ -9,7 +9,7 @@ struct Transform {
     Vector2 translation;
     Rotation rotation;
 
-    Transform(Vector2 translation, Rotation rotation) 
+    explicit Transform(Vector2 translation, Rotation rotation) 
         : translation(translation), rotation(rotation) {}
 
     Transform& operator*=(Transform other);

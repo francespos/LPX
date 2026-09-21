@@ -4,7 +4,7 @@ namespace lpx {
 
 class Rotation {
 public:
-    Rotation(float angle);
+    explicit Rotation(float angle);
 
     friend bool operator==(Rotation lhs, Rotation rhs);
     friend Rotation operator*(Rotation lhs, Rotation rhs);
@@ -18,8 +18,8 @@ public:
     Rotation& Invert();
 
 private:
-    Rotation(float cosine, float sine) : m_cosine(cosine), m_sine(sine) {}
-    float m_cosine, m_sine;
+    Rotation(float cos_angle, float sin_angle) : m_cos_angle(cos_angle), m_sin_angle(sin_angle) {}
+    float m_cos_angle, m_sin_angle;
 };
 
 bool operator==(Rotation lhs, Rotation rhs);

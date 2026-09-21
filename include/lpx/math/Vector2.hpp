@@ -5,7 +5,7 @@ namespace lpx {
 struct Vector2 { 
     float x, y; 
 
-    Vector2(float x, float y) : x(x), y(y) {}
+    explicit Vector2(float x, float y) : x(x), y(y) {}
 
     Vector2& operator+=(Vector2 other);
     Vector2& operator-=(Vector2 other);

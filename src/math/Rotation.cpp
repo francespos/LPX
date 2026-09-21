@@ -3,33 +3,34 @@
 
 namespace lpx {
 
-Rotation::Rotation(float angle) : m_cosine(std::cos(angle)), m_sine(std::sin(angle)) {}
+Rotation::Rotation(float angle) : m_cos_angle(std::cos(angle)), m_sin_angle(std::sin(angle)) {}
 
 Rotation& Rotation::operator*=(Rotation other) {
     return *this = *this * other;
 }
 
 float Rotation::Angle() const {
-    return std::atan2(m_sine, m_cosine);
+    return std::atan2(m_sin_angle, m_cos_angle);
 }
 
 Rotation Rotation::Inverse() const {
-    return Rotation(m_cosine, -m_sine);
+    return Rotation(m_cos_angle, -m_sin_angle);
 }
 
 Rotation& Rotation::SetAngle(float angle) {
-    m_cosine = std::cos(angle);
-    m_sine = std::sin(angle);
+    m_cos_angle = std::cos(angle);
+    m_sin_angle = std::sin(angle);
     return *this;
 }
 
 Rotation& Rotation::Invert() {
-    m_sine = -m_sine;
+    m_sin_angle = -m_sin_angle;
     return *this;
 }
 
 bool operator==(Rotation lhs, Rotation rhs) {
-    return AreEqual(lhs.m_cosine, rhs.m_cosine) && AreEqual(lhs.m_sine, rhs.m_sine);
+    return AreEqual(lhs.m_cos_angle, rhs.m_cos_angle) && 
+        AreEqual(lhs.m_sin_angle, rhs.m_sin_angle);
 }
 
 bool operator!=(Rotation lhs, Rotation rhs) {
@@ -37,8 +38,8 @@ bool operator!=(Rotation lhs, Rotation rhs) {
 }
 
 Rotation operator*(Rotation lhs, Rotation rhs) {
-    return Rotation(lhs.m_cosine * rhs.m_cosine - lhs.m_sine * lhs.m_sine, 
-        lhs.m_sine * rhs.m_cosine + lhs.m_cosine * rhs.m_sine);
+    return Rotation(lhs.m_cos_angle * rhs.m_cos_angle - lhs.m_sin_angle * lhs.m_sin_angle, 
+        lhs.m_sin_angle * rhs.m_cos_angle + lhs.m_cos_angle * rhs.m_sin_angle);
 }
 
 } // namespace lpx

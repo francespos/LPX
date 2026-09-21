@@ -7,8 +7,10 @@ namespace lpx {
 struct Matrix2 { 
     Vector2 col1, col2; 
 
-    Matrix2(Vector2 col1, Vector2 col2) : col1(col1), col2(col2) {}
-    Matrix2(float m00, float m01, float m10, float m11) : col1(m00, m10), col2(m01, m11) {}
+    explicit Matrix2(Vector2 col1, Vector2 col2) : col1(col1), col2(col2) {}
+    
+    explicit Matrix2(float m00, float m01, float m10, float m11) 
+        : col1(m00, m10), col2(m01, m11) {}
 
     Matrix2& operator+=(Matrix2 other);
     Matrix2& operator-=(Matrix2 other);
