@@ -1,5 +1,5 @@
 #include "lpx/math/Rotation.hpp"
-#include "lpx/math/Float.hpp"
+#include <cmath>
 
 namespace lpx {
 
@@ -29,8 +29,7 @@ Rotation& Rotation::Invert() {
 }
 
 bool operator==(Rotation lhs, Rotation rhs) {
-    return AreEqual(lhs.m_cos_angle, rhs.m_cos_angle) && 
-        AreEqual(lhs.m_sin_angle, rhs.m_sin_angle);
+    return lhs.m_cos_angle == rhs.m_cos_angle && lhs.m_sin_angle == rhs.m_sin_angle;
 }
 
 bool operator!=(Rotation lhs, Rotation rhs) {

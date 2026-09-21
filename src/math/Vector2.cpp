@@ -1,5 +1,5 @@
 #include "lpx/math/Vector2.hpp"
-#include "lpx/math/Float.hpp"
+#include <cmath>
 
 namespace lpx {
 
@@ -22,7 +22,9 @@ Vector2& Vector2::operator*=(float scalar) {
 }
 
 Vector2& Vector2::operator/=(float scalar) {
-    return *this *= 1.0f / scalar;
+    x /= scalar;
+    y /= scalar;
+    return *this;
 }
 
 float Vector2::Length() const {
@@ -38,7 +40,7 @@ Vector2 Vector2::Negative() const {
 }
 
 Vector2 Vector2::Normalized() const {
-    return *this / Length();
+    return *this * (1.0f / Length());
 }
 
 Vector2& Vector2::Negate() {
@@ -48,11 +50,11 @@ Vector2& Vector2::Negate() {
 }
 
 Vector2& Vector2::Normalize() {
-    return *this /= Length();
+    return *this *= 1.0f / Length();
 }
 
 bool operator==(Vector2 lhs, Vector2 rhs) {
-    return AreEqual(lhs.x, rhs.x) && AreEqual(lhs.y, rhs.y);
+    return lhs.x == rhs.x && lhs.y == rhs.y;
 }
 
 bool operator!=(Vector2 lhs, Vector2 rhs) {
