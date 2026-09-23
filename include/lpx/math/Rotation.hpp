@@ -18,7 +18,7 @@ public:
     Rotation& Invert();
 
 private:
-    Rotation(float gx, float gy) : m_gx(gx), m_gy(gx) {}
+    Rotation(float gx, float gy) : m_gx(gx), m_gy(gy) {}
     float m_gx, m_gy; // goniometric x and y
 };
 

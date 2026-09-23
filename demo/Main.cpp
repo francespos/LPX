@@ -11,5 +11,5 @@ int main() {
     lpx::Rotation rotation(3.0f);
     lpx::Transform transform(vector, rotation);
 
-    std::cout << "Hello world!\n";
+    std::cout << "Demo works\n";
 }

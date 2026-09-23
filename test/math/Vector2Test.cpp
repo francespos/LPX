@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <lpx/math/Vector2.hpp>
 #include <cmath>
+#include <limits>
 
 using namespace lpx;
 
@@ -124,6 +125,39 @@ TEST(Vector2Test, DivideOperator) {
     EXPECT_EQ(expexted, actual);
 }
 
+TEST(Vector2Test, DivideNotZeroForPositiveZero) {
+    float x = 1.3221f;
+    float y = -432.02f; 
+
+    float scalar = 0.0f;
+    auto actual = Vector2(x, y) / scalar;
+
+    EXPECT_EQ(actual.x, std::numeric_limits<float>::infinity());   
+    EXPECT_EQ(actual.y, -std::numeric_limits<float>::infinity());
+}
+
+TEST(Vector2Test, DivideNotZeroForNegativeZero) {
+    float x = 1.3221f;
+    float y = -432.02f; 
+
+    float scalar = -0.0f;
+    auto actual = Vector2(x, y) / scalar;
+
+    EXPECT_EQ(actual.x, -std::numeric_limits<float>::infinity());   
+    EXPECT_EQ(actual.y, std::numeric_limits<float>::infinity());
+}
+
+TEST(Vector2Test, DivideZeroForZero) {
+    float x = 0.0f;
+    float y = -0.0f; 
+
+    float scalar = 0.0f;
+    auto actual = Vector2(x, y) / scalar;
+
+    EXPECT_TRUE(std::isnan(actual.x));   
+    EXPECT_TRUE(std::isnan(actual.y));    
+}
+
 TEST(Vector2Test, Dot) {
     float x1 = 532.49583f;
     float y1 = -2e-4;
@@ -234,6 +268,42 @@ TEST(Vector2Test, DivideEqualOperator) {
     EXPECT_EQ(expected, actual);
 }
 
+TEST(Vector2Test, DivideEqualNotZeroForPositiveZero) {
+    float x = 3534.34f;
+    float y = -53.00584f;
+
+    float scalar = 0.0f;
+    Vector2 actual(x, y);
+    actual /= scalar;
+
+    EXPECT_EQ(actual.x, std::numeric_limits<float>::infinity()); 
+    EXPECT_EQ(actual.y, -std::numeric_limits<float>::infinity());    
+}
+
+TEST(Vector2Test, DivideEqualNotZeroForNegativeZero) {
+    float x = 3534.34f;
+    float y = -53.00584f;
+
+    float scalar = -0.0f;
+    Vector2 actual(x, y);
+    actual /= scalar;
+
+    EXPECT_EQ(actual.x, -std::numeric_limits<float>::infinity()); 
+    EXPECT_EQ(actual.y, std::numeric_limits<float>::infinity());    
+}
+
+TEST(Vector2Test, DivideEqualZeroForZero) {
+    float x = 0.0f;
+    float y = -0.0f;
+
+    float scalar = 0.0f;
+    Vector2 actual(x, y);
+    actual /= scalar;
+
+    EXPECT_TRUE(std::isnan(actual.x)); 
+    EXPECT_TRUE(std::isnan(actual.y));    
+}
+
 TEST(Vector2Test, Length) {
     float x = 394.43f;
     float y = 5003.593f;
@@ -280,6 +350,16 @@ TEST(Vector2Test, Normalized) {
     EXPECT_EQ(expected, actual);
 }
 
+TEST(Vector2Test, ZeroNormalized) {
+    float x = 0.0f;
+    float y = -0.0f;
+
+    auto actual = Vector2(x, y).Normalized();
+
+    EXPECT_TRUE(std::isnan(actual.x));
+    EXPECT_TRUE(std::isnan(actual.y));
+}
+
 TEST(Vector2Test, Negate) {
     float x = 394.43f;
     float y = 5003.593f;
@@ -305,3 +385,13 @@ TEST(Vector2Test, Normalize) {
     EXPECT_EQ(expected, actual);
 }
 
+TEST(Vector2Test, ZeroNormalize) {
+    float x = 0.0f;
+    float y = -0.0f;
+
+    Vector2 actual(x, y);
+    actual.Normalize();
+
+    EXPECT_TRUE(std::isnan(actual.x));    
+    EXPECT_TRUE(std::isnan(actual.y));
+}
