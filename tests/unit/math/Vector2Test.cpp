@@ -14,6 +14,17 @@ TEST(Vector2Test, Constructor) {
     EXPECT_EQ(vector.y, y);
 }
 
+TEST(Vector2Test, CopyConstructor) {
+    float x = 1.3221f;
+    float y = -432.02f;
+
+    Vector2 expected(x, y);
+    auto actual = expected;
+
+    EXPECT_EQ(expected.x, actual.x);
+    EXPECT_EQ(expected.y, actual.y);
+}
+
 TEST(Vector2Test, EqualTrue) {
     float x = 1.3221f;
     float y = -432.02f;  
