@@ -220,8 +220,8 @@ TEST(Vector2Test, AddEqualOperator) {
     Vector2 other(x2, y2);       
     Vector2 expected(x1 + x2, y1 + y2);
 
-    Vector2 actual(x1, y1);
-    actual += other;
+    Vector2 referenced(x1, y1);
+    auto& actual = referenced += other;
 
     EXPECT_EQ(expected, actual);
 }
@@ -236,8 +236,8 @@ TEST(Vector2Test, SubtractEqualOperator) {
     Vector2 other(x2, y2);
     Vector2 expected(x1 - x2, y1 - y2);
 
-    Vector2 actual(x1, y1);
-    actual -= other;
+    Vector2 referenced(x1, y1);
+    auto& actual = referenced -= other;
 
     EXPECT_EQ(expected, actual);
 }
@@ -249,8 +249,8 @@ TEST(Vector2Test, MultiplyEqualOperator) {
     float scalar = 43.5f;
     Vector2 expected(x * scalar, y * scalar);
 
-    Vector2 actual(x, y);
-    actual *= scalar;
+    Vector2 referenced(x, y);
+    auto& actual = referenced *= scalar;
 
     EXPECT_EQ(expected, actual);
 }
@@ -262,8 +262,8 @@ TEST(Vector2Test, DivideEqualOperator) {
     float scalar = 43.5f;
     Vector2 expected(x / scalar, y / scalar);
 
-    Vector2 actual(x, y);
-    actual /= scalar;
+    Vector2 referenced(x, y);
+    auto& actual = referenced /= scalar;
 
     EXPECT_EQ(expected, actual);
 }
@@ -273,8 +273,8 @@ TEST(Vector2Test, DivideEqualNotZeroForPositiveZero) {
     float y = -53.00584f;
 
     float scalar = 0.0f;
-    Vector2 actual(x, y);
-    actual /= scalar;
+    Vector2 referenced(x, y);
+    auto& actual = referenced /= scalar;
 
     EXPECT_EQ(actual.x, std::numeric_limits<float>::infinity()); 
     EXPECT_EQ(actual.y, -std::numeric_limits<float>::infinity());    
@@ -285,8 +285,8 @@ TEST(Vector2Test, DivideEqualNotZeroForNegativeZero) {
     float y = -53.00584f;
 
     float scalar = -0.0f;
-    Vector2 actual(x, y);
-    actual /= scalar;
+    Vector2 referenced(x, y);
+    auto& actual = referenced /= scalar;
 
     EXPECT_EQ(actual.x, -std::numeric_limits<float>::infinity()); 
     EXPECT_EQ(actual.y, std::numeric_limits<float>::infinity());    
@@ -297,8 +297,8 @@ TEST(Vector2Test, DivideEqualZeroForZero) {
     float y = -0.0f;
 
     float scalar = 0.0f;
-    Vector2 actual(x, y);
-    actual /= scalar;
+    Vector2 referenced(x, y);
+    auto& actual = referenced /= scalar;
 
     EXPECT_TRUE(std::isnan(actual.x)); 
     EXPECT_TRUE(std::isnan(actual.y));    
@@ -366,8 +366,8 @@ TEST(Vector2Test, Negate) {
 
     auto expected = Vector2(-x, -y);
 
-    Vector2 actual(x, y);
-    actual.Negate();
+    Vector2 referenced(x, y);
+    auto& actual = referenced.Negate();
 
     EXPECT_EQ(expected, actual);
 }
@@ -379,8 +379,8 @@ TEST(Vector2Test, Normalize) {
     auto inv_len = 1.0f / Vector2(x, y).Length();
     Vector2 expected(x * inv_len, y * inv_len);
 
-    Vector2 actual(x, y);
-    actual.Normalize();
+    Vector2 referenced(x, y);
+    auto& actual = referenced.Normalize();
 
     EXPECT_EQ(expected, actual);
 }
@@ -389,8 +389,8 @@ TEST(Vector2Test, ZeroNormalize) {
     float x = 0.0f;
     float y = -0.0f;
 
-    Vector2 actual(x, y);
-    actual.Normalize();
+    Vector2 referenced(x, y);
+    auto& actual = referenced.Normalize();
 
     EXPECT_TRUE(std::isnan(actual.x));    
     EXPECT_TRUE(std::isnan(actual.y));

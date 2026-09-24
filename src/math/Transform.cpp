@@ -8,6 +8,11 @@ Transform& Transform::operator*=(Transform other) {
     return *this;
 }
 
+Transform& Transform::operator*=(Vector2 translation) {
+    this->translation += translation;
+    return *this;
+}
+
 Transform& Transform::operator*=(Rotation rotation) {
     this->rotation *= rotation;
     return *this;
@@ -33,6 +38,10 @@ bool operator!=(Transform lhs, Transform rhs) {
 
 Transform operator*(Transform lhs, Transform rhs) {
     return Transform(lhs.translation + rhs.translation, lhs.rotation * rhs.rotation);
+}
+
+Transform operator*(Transform transform, Vector2 translation) {
+    return Transform(transform.translation + translation, transform.rotation);
 }
 
 Transform operator*(Transform transform, Rotation rotation) {
