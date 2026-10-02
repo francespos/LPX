@@ -23,9 +23,11 @@ struct Matrix2 {
     float Determinant() const;
 
     Matrix2 Negative() const;
+    // TODO: Implement Transposed()
     Matrix2 Inverse() const;
 
     Matrix2& Negate();
+    // TODO: Implement Transpose()
     Matrix2& Invert();
 };
 
